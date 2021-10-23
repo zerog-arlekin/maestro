@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { DOCUMENT } from '@angular/common';
 
-import { ZoomMtg } from '@zoomus/websdk';
+import {MeetingInfoType, ZoomMtg} from '@zoomus/websdk';
 
 ZoomMtg.preLoadWasm();
 ZoomMtg.prepareWebSDK();
@@ -61,6 +61,25 @@ export class AppComponent implements OnInit {
 
     ZoomMtg.init({
       leaveUrl: this.leaveUrl,
+      disableInvite: true,
+      disableCallOut: true,
+      disableRecord: true,
+      disableJoinAudio: true,
+      audioPanelAlwaysOpen: false,
+      showPureSharingContent: false,
+      isSupportAV: false,
+      isSupportChat: false,
+      isSupportQA: false,
+      isSupportCC: false,
+      isSupportPolling: false,
+      isSupportBreakout: false,
+      screenShare: false,
+      videoDrag: false,
+      videoHeader: false,
+      loginWindow: {
+        width: '320',
+        height: '300',
+      }, // optional,
       success: (success) => {
         console.log(success);
         ZoomMtg.join({
