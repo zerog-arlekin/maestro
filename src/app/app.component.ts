@@ -22,7 +22,7 @@ export class AppComponent implements OnInit {
   apiKey = 'iuxd0UZ4QcSXaAfRS7fnNA';
   meetingNumber = '84792430728';
   role = 0;
-  leaveUrl = 'http://localhost:4200';
+  leaveUrl = 'https://renborn.github.io/sapphire-maestro-zoom/';
   userName = 'Angular';
   userEmail = '';
   passWord = 'RUVZYUEwcFJBazNmckxrblhBRDFKZz09';
