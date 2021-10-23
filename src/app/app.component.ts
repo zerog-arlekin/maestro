@@ -59,17 +59,13 @@ export class AppComponent implements OnInit {
 
     ZoomMtg.init({
       leaveUrl: this.leaveUrl,
-      isSupportAV: true,
       disableInvite: true,
       disableCallOut: true,
       disableRecord: true,
       isSupportChat: false,
-      videoHeader: true,
-      loginWindow: {  // optional,
-        width: '400',
-        height: '380'
-      },
+      videoHeader: false,
       screenShare: false,
+      videoDrag: false,
       success: (initSuccess) => {
         console.log(initSuccess);
         ZoomMtg.join({
