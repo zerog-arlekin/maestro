@@ -19,13 +19,14 @@ export class AppComponent implements OnInit {
 
   // setup your signature endpoint here: https://github.com/zoom/meetingsdk-sample-signature-node.js
   signatureEndpoint = 'https://sapphire-maestro-zoom.herokuapp.com/';
+  // signatureEndpoint = 'http://localhost:4000';
   apiKey = 'iuxd0UZ4QcSXaAfRS7fnNA';
-  meetingNumber = '84792430728';
+  meetingNumber = '81532476274';
   role = 0;
   leaveUrl = 'https://renborn.github.io/sapphire-maestro-zoom/';
   userName = 'Angular';
   userEmail = '';
-  passWord = 'RUVZYUEwcFJBazNmckxrblhBRDFKZz09';
+  passWord = 'TmRTcU5JMTV3UEV4RG8rQnNDYk9BZz09';
   // pass in the registrant's token if your meeting or webinar requires registration. More info here:
   // Meetings: https://marketplace.zoom.us/docs/sdk/native-sdks/web/build/meetings/join#join-registered
   // Webinars: https://marketplace.zoom.us/docs/sdk/native-sdks/web/build/webinars/join#join-registered-webinar
