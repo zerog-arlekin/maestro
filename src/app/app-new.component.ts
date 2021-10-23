@@ -12,7 +12,7 @@ import ZoomMtgEmbedded from '@zoomus/websdk/embedded';
 export class AppComponent implements OnInit {
 
   // setup your signature endpoint here: https://github.com/zoom/meetingsdk-sample-signature-node.js
-  signatureEndpoint = 'http://localhost:4000';
+  signatureEndpoint = 'https://sapphire-maestro-zoom.herokuapp.com/';
   apiKey = 'iuxd0UZ4QcSXaAfRS7fnNA';
   meetingNumber = '89195480499';
   role = 0;
