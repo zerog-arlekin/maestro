@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { DOCUMENT } from '@angular/common';
 
-import {MeetingInfoType, ZoomMtg} from '@zoomus/websdk';
+import { ZoomMtg } from '@zoomus/websdk';
 
 ZoomMtg.preLoadWasm();
 ZoomMtg.prepareWebSDK();
@@ -18,13 +18,12 @@ ZoomMtg.i18n.reload('en-US');
 export class AppComponent implements OnInit {
 
   // setup your signature endpoint here: https://github.com/zoom/meetingsdk-sample-signature-node.js
-  signatureEndpoint = 'https://sapphire-maestro-zoom.herokuapp.com/';
+  signatureEndpoint = 'https://sapphire-maestro-zoom.herokuapp.com';
   apiKey = 'iuxd0UZ4QcSXaAfRS7fnNA';
   meetingNumber = '9289684478';
   role = 0;
-  leaveUrl = 'https://renborn.github.io/sapphire-maestro-zoom/';
-  userName = 'Angular';
-  userEmail = '';
+  leaveUrl = 'http://localhost:4200';
+  userName = 'Anatolii';
   passWord = 'WVdGbTlLYk0vR1FTQTloWmljSU5RQT09';
   // pass in the registrant's token if your meeting or webinar requires registration. More info here:
   // Meetings: https://marketplace.zoom.us/docs/sdk/native-sdks/web/build/meetings/join#join-registered
@@ -35,14 +34,12 @@ export class AppComponent implements OnInit {
 
   }
 
-  ngOnInit() {
+  ngOnInit(): any {}
 
-  }
-
-  getSignature() {
+  getSignature(): any {
     this.httpClient.post(this.signatureEndpoint, {
-	    meetingNumber: this.meetingNumber,
-	    role: this.role
+      meetingNumber: this.meetingNumber,
+      role: this.role
     }).toPromise().then((data: any) => {
       if (data.signature) {
         console.log(data.signature);
@@ -55,43 +52,23 @@ export class AppComponent implements OnInit {
     });
   }
 
-  startMeeting(signature) {
+  startMeeting(signature): any {
 
     document.getElementById('zmmtg-root').style.display = 'block';
 
     ZoomMtg.init({
       leaveUrl: this.leaveUrl,
-      disableInvite: true,
-      disableCallOut: true,
-      disableRecord: true,
-      disableJoinAudio: true,
-      audioPanelAlwaysOpen: false,
-      showPureSharingContent: false,
-      isSupportAV: false,
-      isSupportChat: false,
-      isSupportQA: false,
-      isSupportCC: false,
-      isSupportPolling: false,
-      isSupportBreakout: false,
-      screenShare: false,
-      videoDrag: false,
-      videoHeader: false,
-      loginWindow: {
-        width: '320',
-        height: '300',
-      }, // optional,
-      success: (success) => {
-        console.log(success);
+      success: (initSuccess) => {
+        console.log(initSuccess);
         ZoomMtg.join({
           signature,
           meetingNumber: this.meetingNumber,
           userName: this.userName,
           apiKey: this.apiKey,
-          userEmail: this.userEmail,
           passWord: this.passWord,
           tk: this.registrantToken,
-          success: (success) => {
-            console.log(success);
+          success: (joinSuccess) => {
+            console.log(joinSuccess);
           },
           error: (error) => {
             console.log(error);
