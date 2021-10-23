@@ -33,11 +33,11 @@ export class AppComponent implements OnInit {
 
   constructor(public httpClient: HttpClient, @Inject(DOCUMENT) document) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
 
   }
 
-  getSignature() {
+  getSignature(): void {
     this.httpClient.post(this.signatureEndpoint, {
 	    meetingNumber: this.meetingNumber,
 	    role: this.role
@@ -53,7 +53,7 @@ export class AppComponent implements OnInit {
     });
   }
 
-  startMeeting(signature) {
+  startMeeting(signature): void {
 
     document.getElementById('zmmtg-root').style.display = 'block';
 

@@ -26,8 +26,8 @@ export class AppComponent implements OnInit {
 
   }
 
-  ngOnInit() {
-    let meetingSDKElement = document.getElementById('meetingSDKElement');
+  ngOnInit(): void {
+    const meetingSDKElement = document.getElementById('meetingSDKElement');
 
     this.client.init({
       debug: true,
@@ -50,31 +50,31 @@ export class AppComponent implements OnInit {
     });
   }
 
-  getSignature() {
+  getSignature(): void {
     this.httpClient.post(this.signatureEndpoint, {
 	    meetingNumber: this.meetingNumber,
 	    role: this.role
     }).toPromise().then((data: any) => {
-      if(data.signature) {
-        console.log(data.signature)
-        this.startMeeting(data.signature)
+      if (data.signature) {
+        console.log(data.signature);
+        this.startMeeting(data.signature);
       } else {
-        console.log(data)
+        console.log(data);
       }
     }).catch((error) => {
-      console.log(error)
-    })
+      console.log(error);
+    });
   }
 
-  startMeeting(signature) {
+  startMeeting(signature): void {
 
     this.client.join({
     	apiKey: this.apiKey,
-    	signature: signature,
+    	signature,
     	meetingNumber: this.meetingNumber,
     	password: this.passWord,
     	userName: this.userName,
       userEmail: this.userEmail
-    })
+    });
   }
 }
