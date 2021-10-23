@@ -28,13 +28,15 @@ export class AppComponent implements OnInit {
   // pass in the registrant's token if your meeting or webinar requires registration. More info here:
   // Meetings: https://marketplace.zoom.us/docs/sdk/native-sdks/web/build/meetings/join#join-registered
   // Webinars: https://marketplace.zoom.us/docs/sdk/native-sdks/web/build/webinars/join#join-registered-webinar
-  registrantToken = '';
+  private zoomElement: HTMLElement;
 
   constructor(public httpClient: HttpClient, @Inject(DOCUMENT) document) {
 
   }
 
-  ngOnInit(): any {}
+  ngOnInit(): any {
+    this.zoomElement = document.getElementById('zmmtg-root');
+  }
 
   getSignature(): any {
     this.httpClient.post(this.signatureEndpoint, {
@@ -53,11 +55,21 @@ export class AppComponent implements OnInit {
   }
 
   startMeeting(signature): any {
-
-    document.getElementById('zmmtg-root').style.display = 'block';
+    this.zoomElement.style.display = 'block';
 
     ZoomMtg.init({
       leaveUrl: this.leaveUrl,
+      isSupportAV: true,
+      disableInvite: true,
+      disableCallOut: true,
+      disableRecord: true,
+      isSupportChat: false,
+      videoHeader: true,
+      loginWindow: {  // optional,
+        width: '400',
+        height: '380'
+      },
+      screenShare: false,
       success: (initSuccess) => {
         console.log(initSuccess);
         ZoomMtg.join({
@@ -66,7 +78,6 @@ export class AppComponent implements OnInit {
           userName: this.userName,
           apiKey: this.apiKey,
           passWord: this.passWord,
-          tk: this.registrantToken,
           success: (joinSuccess) => {
             console.log(joinSuccess);
           },
