@@ -18,52 +18,53 @@ ZoomMtg.i18n.reload('en-US');
 export class AppComponent implements OnInit {
 
   // setup your signature endpoint here: https://github.com/zoom/meetingsdk-sample-signature-node.js
-  signatureEndpoint = 'https://sapphire-maestro-zoom.herokuapp.com/';
-  // signatureEndpoint = 'http://localhost:4000';
-  apiKey = 'iuxd0UZ4QcSXaAfRS7fnNA';
-  meetingNumber = '81532476274';
-  role = 0;
-  leaveUrl = 'https://renborn.github.io/sapphire-maestro-zoom/';
-  userName = 'Angular';
-  userEmail = '';
-  passWord = 'TmRTcU5JMTV3UEV4RG8rQnNDYk9BZz09';
+  signatureEndpoint = 'https://sapphire-maestro-zoom.herokuapp.com/'
+  apiKey = 'iuxd0UZ4QcSXaAfRS7fnNA'
+  meetingNumber = '81532476274'
+  role = 0
+  leaveUrl = 'https://renborn.github.io/sapphire-maestro-zoom/'
+  userName = 'Angular'
+  userEmail = ''
+  passWord = 'TmRTcU5JMTV3UEV4RG8rQnNDYk9BZz09'
   // pass in the registrant's token if your meeting or webinar requires registration. More info here:
   // Meetings: https://marketplace.zoom.us/docs/sdk/native-sdks/web/build/meetings/join#join-registered
   // Webinars: https://marketplace.zoom.us/docs/sdk/native-sdks/web/build/webinars/join#join-registered-webinar
-  registrantToken = '';
+  registrantToken = ''
 
-  constructor(public httpClient: HttpClient, @Inject(DOCUMENT) document) {}
-
-  ngOnInit(): void {
+  constructor(public httpClient: HttpClient, @Inject(DOCUMENT) document) {
 
   }
 
-  getSignature(): void {
+  ngOnInit() {
+
+  }
+
+  getSignature() {
     this.httpClient.post(this.signatureEndpoint, {
 	    meetingNumber: this.meetingNumber,
 	    role: this.role
     }).toPromise().then((data: any) => {
-      if (data.signature) {
-        console.log(data.signature);
-        this.startMeeting(data.signature);
+      if(data.signature) {
+        console.log(data.signature)
+        this.startMeeting(data.signature)
       } else {
-        console.log(data);
+        console.log(data)
       }
     }).catch((error) => {
-      console.log(error);
-    });
+      console.log(error)
+    })
   }
 
-  startMeeting(signature): void {
+  startMeeting(signature) {
 
-    document.getElementById('zmmtg-root').style.display = 'block';
+    document.getElementById('zmmtg-root').style.display = 'block'
 
     ZoomMtg.init({
       leaveUrl: this.leaveUrl,
       success: (success) => {
-        console.log(success);
+        console.log(success)
         ZoomMtg.join({
-          signature,
+          signature: signature,
           meetingNumber: this.meetingNumber,
           userName: this.userName,
           apiKey: this.apiKey,
@@ -71,16 +72,16 @@ export class AppComponent implements OnInit {
           passWord: this.passWord,
           tk: this.registrantToken,
           success: (success) => {
-            console.log(success);
+            console.log(success)
           },
           error: (error) => {
-            console.log(error);
+            console.log(error)
           }
-        });
+        })
       },
       error: (error) => {
-        console.log(error);
+        console.log(error)
       }
-    });
+    })
   }
 }

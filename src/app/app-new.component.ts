@@ -12,13 +12,13 @@ import ZoomMtgEmbedded from '@zoomus/websdk/embedded';
 export class AppComponent implements OnInit {
 
   // setup your signature endpoint here: https://github.com/zoom/meetingsdk-sample-signature-node.js
-  signatureEndpoint = 'https://sapphire-maestro-zoom.herokuapp.com/';
-  apiKey = 'iuxd0UZ4QcSXaAfRS7fnNA';
-  meetingNumber = '89195480499';
-  role = 0;
-  userName = 'Angular';
-  userEmail = '';
-  passWord = 'RHZsY3BCdWhMWDlIVzQrTUsyTVBWQT09';
+  signatureEndpoint = ''
+  apiKey = ''
+  meetingNumber = '123456789'
+  role = 0
+  userName = 'Angular'
+  userEmail = ''
+  passWord = ''
 
   client = ZoomMtgEmbedded.createClient();
 
@@ -26,8 +26,8 @@ export class AppComponent implements OnInit {
 
   }
 
-  ngOnInit(): void {
-    const meetingSDKElement = document.getElementById('meetingSDKElement');
+  ngOnInit() {
+    let meetingSDKElement = document.getElementById('meetingSDKElement');
 
     this.client.init({
       debug: true,
@@ -50,31 +50,31 @@ export class AppComponent implements OnInit {
     });
   }
 
-  getSignature(): void {
+  getSignature() {
     this.httpClient.post(this.signatureEndpoint, {
 	    meetingNumber: this.meetingNumber,
 	    role: this.role
     }).toPromise().then((data: any) => {
-      if (data.signature) {
-        console.log(data.signature);
-        this.startMeeting(data.signature);
+      if(data.signature) {
+        console.log(data.signature)
+        this.startMeeting(data.signature)
       } else {
-        console.log(data);
+        console.log(data)
       }
     }).catch((error) => {
-      console.log(error);
-    });
+      console.log(error)
+    })
   }
 
-  startMeeting(signature): void {
+  startMeeting(signature) {
 
     this.client.join({
     	apiKey: this.apiKey,
-    	signature,
+    	signature: signature,
     	meetingNumber: this.meetingNumber,
     	password: this.passWord,
     	userName: this.userName,
       userEmail: this.userEmail
-    });
+    })
   }
 }
