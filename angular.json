@@ -47,7 +47,7 @@
                   "with": "src/environments/environment.prod.ts"
                 }
               ],
-              "baseHref": "/",
+              "baseHref": "/sapphire-maestro-zoom/",
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
