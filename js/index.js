@@ -5,9 +5,6 @@ window.addEventListener('DOMContentLoaded', function (event) {
 
 function websdkready() {
     var testTool = window.testTool;
-    if (testTool.isMobileDevice()) {
-        vConsole = new VConsole();
-    }
     console.log("checkSystemRequirements");
     console.log(JSON.stringify(ZoomMtg.checkSystemRequirements()));
 
@@ -25,47 +22,16 @@ function websdkready() {
      */
     var API_SECRET = "fFRvVmAFhwQ7h5DXnEc1vyUjlprpO6Z39QS1";
 
-    document.getElementById("meeting_number").value = testTool.getCookie(
-        "meeting_number"
-    );
-    document.getElementById("meeting_pwd").value = testTool.getCookie(
-        "meeting_pwd"
-    );
-
-    // copy zoom invite link to mn, autofill mn and pwd.
-    document
-        .getElementById("meeting_number")
-        .addEventListener("input", function (e) {
-            var tmpMn = e.target.value.replace(/([^0-9])+/i, "");
-            if (tmpMn.match(/([0-9]{9,11})/)) {
-                tmpMn = tmpMn.match(/([0-9]{9,11})/)[1];
-            }
-            var tmpPwd = e.target.value.match(/pwd=([\d,\w]+)/);
-            if (tmpPwd) {
-                document.getElementById("meeting_pwd").value = tmpPwd[1];
-                testTool.setCookie("meeting_pwd", tmpPwd[1]);
-            }
-            document.getElementById("meeting_number").value = tmpMn;
-            testTool.setCookie(
-                "meeting_number",
-                document.getElementById("meeting_number").value
-            );
-        });
-
     // click join meeting button
     document
         .getElementById("join_meeting")
         .addEventListener("click", function (e) {
             e.preventDefault();
             var meetingConfig = testTool.getMeetingConfig();
-            if (!meetingConfig.mn || !meetingConfig.name) {
+            if (!meetingConfig.name) {
                 alert("Meeting username is empty");
                 return false;
             }
-
-
-            testTool.setCookie("meeting_number", meetingConfig.mn);
-            testTool.setCookie("meeting_pwd", meetingConfig.pwd);
 
             var signature = ZoomMtg.generateSignature({
                 meetingNumber: meetingConfig.mn,
