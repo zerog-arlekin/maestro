@@ -76,8 +76,8 @@ function websdkready() {
                     console.log(res.result);
                     meetingConfig.signature = res.result;
                     meetingConfig.apiKey = API_KEY;
-                    // var joinUrl = "/sapphire-maestro-zoom/meeting.html?" + testTool.serialize(meetingConfig);
-                    var joinUrl = "/meeting.html?" + testTool.serialize(meetingConfig);
+                    var joinUrl = "/sapphire-maestro-zoom/meeting.html?" + testTool.serialize(meetingConfig);
+                    // var joinUrl = "/meeting.html?" + testTool.serialize(meetingConfig);
                     console.log(joinUrl);
                     window.open(joinUrl, "_self");
                 },

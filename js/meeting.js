@@ -12,16 +12,10 @@ function websdkready() {
     meetingNumber: tmpArgs.mn,
     userName: tmpArgs.name,
     passWord: tmpArgs.pwd,
-    // leaveUrl: "/sapphire-maestro-zoom/index.html",
-    leaveUrl: "/index.html",
+    leaveUrl: "/sapphire-maestro-zoom/index.html",
+    // leaveUrl: "/index.html",
     role: parseInt(tmpArgs.role, 10),
-    userEmail: (function () {
-      try {
-        return testTool.b64DecodeUnicode(tmpArgs.email);
-      } catch (e) {
-        return tmpArgs.email;
-      }
-    })(),
+    userEmail: tmpArgs.email,
     lang: tmpArgs.lang,
     signature: tmpArgs.signature || "",
     china: tmpArgs.china === "1",
