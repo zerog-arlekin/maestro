@@ -28,7 +28,8 @@ function websdkready() {
       );
     })(),
     passWord: tmpArgs.pwd,
-    leaveUrl: "/sapphire-maestro-zoom/index.html",
+    // leaveUrl: "/sapphire-maestro-zoom/index.html",
+    leaveUrl: "/index.html",
     role: parseInt(tmpArgs.role, 10),
     userEmail: (function () {
       try {

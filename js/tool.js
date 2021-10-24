@@ -40,13 +40,11 @@ var testTool = {
         document.getElementById("display_name").value
       ),
       pwd: document.getElementById("meeting_pwd").value,
-      role: parseInt(document.getElementById("meeting_role").value, 10),
-      email: testTool.b64EncodeUnicode(
-        document.getElementById("meeting_email").value
-      ),
-      lang: document.getElementById("meeting_lang").value,
+      role: 0,
+      email: '',
+      lang: 'en-US',
       signature: "",
-      china: document.getElementById("meeting_china").value,
+      china: false,
     };
   },
   createZoomNode: function (id, url) {
@@ -62,15 +60,6 @@ var testTool = {
     } else {
       document.body.appendChild(zoomIframe);
     }
-  },
-  getCurrentDomain: function () {
-    return (
-      window.location.protocol +
-      "//" +
-      window.location.hostname +
-      ":" +
-      window.location.port
-    );
   },
   parseQuery: function () {
     return (function () {
@@ -242,7 +231,7 @@ var testTool = {
     var regStrChrome2 = /ipad; cpu os (\d+_\d+)/gi;
     var regStr_saf = /version\/[\d.]+/gi;
     var regStr_saf2 = /safari\/[\d.]+/gi;
-  
+
     var regStr_edg = /edg\/[\d.]+/gi;
 
     // firefox
@@ -317,15 +306,6 @@ var testTool = {
       }
     }
     return "";
-  },
-  deleteAllCookies: function () {
-    var cookies = document.cookie.split(";");
-    for (var i = 0; i < cookies.length; i++) {
-      var cookie = cookies[i];
-      var eqPos = cookie.indexOf("=");
-      var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
-      document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
-    }
   },
 };
 
