@@ -10,23 +10,7 @@ function websdkready() {
   var meetingConfig = {
     apiKey: tmpArgs.apiKey,
     meetingNumber: tmpArgs.mn,
-    userName: (function () {
-      if (tmpArgs.name) {
-        try {
-          return testTool.b64DecodeUnicode(tmpArgs.name);
-        } catch (e) {
-          return tmpArgs.name;
-        }
-      }
-      return (
-        "CDN#" +
-        tmpArgs.version +
-        "#" +
-        testTool.detectOS() +
-        "#" +
-        testTool.getBrowserInfo()
-      );
-    })(),
+    userName: tmpArgs.name,
     passWord: tmpArgs.pwd,
     // leaveUrl: "/sapphire-maestro-zoom/index.html",
     leaveUrl: "/index.html",

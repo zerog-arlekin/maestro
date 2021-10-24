@@ -25,13 +25,6 @@ function websdkready() {
      */
     var API_SECRET = "fFRvVmAFhwQ7h5DXnEc1vyUjlprpO6Z39QS1";
 
-    // some help code, remember mn, pwd, lang to cookie, and autofill.
-    document.getElementById("display_name").value =
-        "CDN" +
-        ZoomMtg.getJSSDKVersion()[0] +
-        testTool.detectOS() +
-        "#" +
-        testTool.getBrowserInfo();
     document.getElementById("meeting_number").value = testTool.getCookie(
         "meeting_number"
     );
@@ -66,7 +59,7 @@ function websdkready() {
             e.preventDefault();
             var meetingConfig = testTool.getMeetingConfig();
             if (!meetingConfig.mn || !meetingConfig.name) {
-                alert("Meeting number or username is empty");
+                alert("Meeting username is empty");
                 return false;
             }
 

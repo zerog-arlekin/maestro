@@ -67,15 +67,10 @@
         }
         .card__control {
             display: flex;
-            flex-direction: column;
             margin-bottom: 15px;
         }
-        .card__control label {
-            font-size: 14px;
-            display: inline-block;
-            padding-bottom: 8px;
-        }
         .card__control input[type=text] {
+            width: 100%;
             padding: 8px 15px;
             font-size: 16px;
             background-color: #fff;
@@ -121,7 +116,6 @@
                     <input type="hidden" name="meeting_pwd" id="meeting_pwd" />
 
                     <div class="card__control">
-                        <label for="display_name">Name</label>
                         <input type="text" name="display_name" id="display_name" value="" maxLength="100" placeholder="Name" required />
                     </div>
                     <button type="submit" class="card__button" id="join_meeting">Join</button>
