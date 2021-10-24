@@ -82,7 +82,7 @@ function websdkready() {
     document.getElementById("meeting_pwd").value = "";
     document.getElementById("meeting_lang").value = "en-US";
     document.getElementById("meeting_role").value = 0;
-    window.location.href = "https://renborn.github.io/sapphire-maestro-zoom/index.html";
+    window.location.href = "/sapphire-maestro-zoom/index.html";
   });
 
   // click join meeting button
@@ -109,9 +109,9 @@ function websdkready() {
           console.log(res.result);
           meetingConfig.signature = res.result;
           meetingConfig.apiKey = API_KEY;
-          var joinUrl = "https://renborn.github.io/sapphire-maestro-zoom/meeting.html?" + testTool.serialize(meetingConfig);
+          var joinUrl = "/sapphire-maestro-zoom/meeting.html?" + testTool.serialize(meetingConfig);
           console.log(joinUrl);
-          window.open(joinUrl, "_blank");
+          window.open(joinUrl, "_self");
         },
       });
     });
@@ -143,7 +143,7 @@ function websdkready() {
         meetingConfig.apiKey = API_KEY;
         var joinUrl =
           testTool.getCurrentDomain() +
-          "https://renborn.github.io/sapphire-maestro-zoom/meeting.html?" +
+          "/sapphire-maestro-zoom/meeting.html?" +
           testTool.serialize(meetingConfig);
         document.getElementById('copy_link_value').setAttribute('link', joinUrl);
         copyToClipboard('copy_link_value');

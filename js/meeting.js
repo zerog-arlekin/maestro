@@ -28,7 +28,7 @@ function websdkready() {
       );
     })(),
     passWord: tmpArgs.pwd,
-    leaveUrl: "https://renborn.github.io/sapphire-maestro-zoom/index.html",
+    leaveUrl: "/sapphire-maestro-zoom/index.html",
     role: parseInt(tmpArgs.role, 10),
     userEmail: (function () {
       try {
