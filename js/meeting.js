@@ -43,7 +43,10 @@ function websdkready() {
             leaveUrl: meetingConfig.leaveUrl,
             webEndpoint: meetingConfig.webEndpoint,
             disableCORP: !window.crossOriginIsolated, // default true
-            disablePreview: true, // default false
+            disablePreview: true,
+            isSupportChat: false,
+            screenShare: false,
+            showPureSharingContent: false,
             success: function () {
                 console.log(meetingConfig);
                 console.log("signature", signature);
@@ -62,7 +65,10 @@ function websdkready() {
                         ZoomMtg.getAttendeeslist({});
                         ZoomMtg.getCurrentUser({
                             success: function (res) {
-                                console.log("success getCurrentUser", res.result.currentUser);
+                                debugger;
+
+                                console.log("OPAPAsuccess getCurrentUser", res.result.currentUser);
+                                res.result.currentUser.video = true;
                             },
                         });
                     },
