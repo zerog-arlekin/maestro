@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Witness 0.0.4</title>
+    <title>Witness 0.0.5</title>
 
     <link rel="stylesheet" href="./css/normalize.css">
 
@@ -28,6 +28,7 @@
             overflow-y: auto;
             outline: none;
         }
+
         .wrapper__inner {
             position: relative;
             width: auto;
@@ -48,24 +49,29 @@
             box-shadow: 0 10px 15px -3px rgb(0 0 0 / 7%), 0 4px 6px -2px rgb(0 0 0 / 5%);
             pointer-events: auto;
         }
+
         .card img {
             width: 100%;
             border-top-left-radius: 8px;
             border-top-right-radius: 8px;
         }
+
         .card__body {
             position: relative;
             flex: 1 1 auto;
             padding: 30px;
         }
+
         .card__title {
             font-size: 20px;
             margin-bottom: 15px;
         }
+
         .card__control {
             display: flex;
             margin-bottom: 15px;
         }
+
         .card__control input[type=text] {
             width: 100%;
             padding: 8px 15px;
@@ -77,10 +83,12 @@
             border-radius: 8px;
             outline: none !important;
         }
+
         .card__control input[type=text]:focus {
             outline: none !important;
             border-color: #1266f1;
         }
+
         .card__button {
             width: 100%;
             display: inline-block;
@@ -110,7 +118,8 @@
 
                 <form>
                     <div class="card__control">
-                        <input type="text" name="display_name" id="display_name" value="" maxLength="100" placeholder="Name" required />
+                        <input type="text" name="display_name" id="display_name" value="" maxLength="100"
+                               placeholder="Name" required/>
                     </div>
                     <button type="submit" class="card__button" id="join_meeting">Join</button>
                 </form>
