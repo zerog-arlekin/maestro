@@ -65,8 +65,6 @@ function websdkready() {
                         ZoomMtg.getAttendeeslist({});
                         ZoomMtg.getCurrentUser({
                             success: function (res) {
-                                debugger;
-
                                 console.log("OPAPAsuccess getCurrentUser", res.result.currentUser);
                                 res.result.currentUser.video = true;
                             },
