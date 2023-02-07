@@ -14,13 +14,13 @@ function websdkready() {
     // ZoomMtg.setZoomJSLib('http://localhost:9999/node_modules/@zoomus/websdk/dist/lib', '/av'); // Local version default, Angular Project change to use cdn version
     ZoomMtg.preLoadWasm(); // pre download wasm file to save time.
 
-    var API_KEY = "fnX5Tu_YSCKduHtst5ptKQ";
+    var API_KEY = "o42FCt9Ql7MHbLsAMy4iI38QLZK8jcPMY6yv";
     /**
      * NEVER PUT YOUR ACTUAL API SECRET IN CLIENT SIDE CODE, THIS IS JUST FOR QUICK PROTOTYPING
      * The below generateSignature should be done server side as not to expose your api secret in public
      * You can find an eaxmple in here: https://marketplace.zoom.us/docs/sdk/native-sdks/web/essential/signature
      */
-    var API_SECRET = "oqLscnZYdpcZutUQgTFOykMIS9GcHeOE2dRa";
+    var API_SECRET = "miprDFFKun5kH1zmeHvjGIrh7KTjjFkaDsUe";
 
     // click join meeting button
     document
