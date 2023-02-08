@@ -83,6 +83,8 @@ function websdkready() {
 
         ZoomMtg.init({
             leaveUrl: meetingConfig.leaveUrl,
+            disableJoinAudio: true,
+            disablePreview: true,
             success: (success) => {
               console.log(success)
               ZoomMtg.join({
