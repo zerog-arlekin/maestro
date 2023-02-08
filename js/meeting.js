@@ -20,8 +20,7 @@ function websdkready() {
             }
         })(),
         passWord: tmpArgs.pwd,
-        leaveUrl: "/maestro/index.html",
-        // leaveUrl: "/index.html",
+        leaveUrl: "/index.html",
         role: parseInt(tmpArgs.role, 10),
         userEmail: tmpArgs.email,
         lang: tmpArgs.lang,
@@ -39,46 +38,74 @@ function websdkready() {
     ZoomMtg.prepareJssdk();
 
     function beginJoin(signature) {
+        console.log('begin join: ', signature);
+        // ZoomMtg.init({
+        //     leaveUrl: meetingConfig.leaveUrl,
+        //     webEndpoint: meetingConfig.webEndpoint,
+        //     disableCORP: !window.crossOriginIsolated, // default true
+        //     disablePreview: true,
+        //     isSupportChat: false,
+        //     screenShare: false,
+        //     showPureSharingContent: false,
+        //     success: function () {
+        //         console.log(meetingConfig);
+        //         console.log("signature", signature);
+        //         ZoomMtg.i18n.load(meetingConfig.lang);
+        //         ZoomMtg.i18n.reload(meetingConfig.lang);
+        //         ZoomMtg.join({
+        //             meetingNumber: meetingConfig.meetingNumber,
+        //             userName: meetingConfig.userName,
+        //             signature: signature,
+        //             apiKey: meetingConfig.apiKey,
+        //             userEmail: meetingConfig.userEmail,
+        //             passWord: meetingConfig.passWord,
+        //             success: function (res) {
+        //                 console.log('res: ', res);
+        //                 console.log("join meeting success");
+        //                 console.log("get attendeelist");
+        //                 ZoomMtg.getAttendeeslist({});
+        //                 ZoomMtg.getCurrentUser({
+        //                     success: function (res) {
+        //                         console.log("OPAPAsuccess getCurrentUser", res.result.currentUser);
+        //                         res.result.currentUser.video = true;
+        //                     },
+        //                 });
+        //             },
+        //             error: function (res) {
+        //                 console.log(res);
+        //             },
+        //         });
+        //     },
+        //     error: function (res) {
+        //         console.log(res);
+        //     },
+        // });
+
         ZoomMtg.init({
             leaveUrl: meetingConfig.leaveUrl,
-            webEndpoint: meetingConfig.webEndpoint,
-            disableCORP: !window.crossOriginIsolated, // default true
-            disablePreview: true,
-            isSupportChat: false,
-            screenShare: false,
-            showPureSharingContent: false,
-            success: function () {
-                console.log(meetingConfig);
-                console.log("signature", signature);
-                ZoomMtg.i18n.load(meetingConfig.lang);
-                ZoomMtg.i18n.reload(meetingConfig.lang);
-                ZoomMtg.join({
-                    meetingNumber: meetingConfig.meetingNumber,
-                    userName: meetingConfig.userName,
-                    signature: signature,
-                    apiKey: meetingConfig.apiKey,
-                    userEmail: meetingConfig.userEmail,
-                    passWord: meetingConfig.passWord,
-                    success: function (res) {
-                        console.log("join meeting success");
-                        console.log("get attendeelist");
-                        ZoomMtg.getAttendeeslist({});
-                        ZoomMtg.getCurrentUser({
-                            success: function (res) {
-                                console.log("OPAPAsuccess getCurrentUser", res.result.currentUser);
-                                res.result.currentUser.video = true;
-                            },
-                        });
-                    },
-                    error: function (res) {
-                        console.log(res);
-                    },
-                });
+            success: (success) => {
+              console.log(success)
+              ZoomMtg.join({
+                signature: signature,
+                meetingNumber: meetingConfig.meetingNumber,
+                userName: meetingConfig.userName,
+                sdkKey: meetingConfig.apiKey,
+                userEmail: meetingConfig.userEmail,
+                passWord: meetingConfig.passWord,
+                tk: '',
+                success: (success) => {
+                  console.log(success)
+                },
+                error: (error) => {
+                  console.log(error)
+                }
+              })
+      
             },
-            error: function (res) {
-                console.log(res);
-            },
-        });
+            error: (error) => {
+              console.log(error)
+            }
+          })
 
         ZoomMtg.inMeetingServiceListener('onUserJoin', function (data) {
             console.log('inMeetingServiceListener onUserJoin', data);
