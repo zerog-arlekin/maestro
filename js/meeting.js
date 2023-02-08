@@ -34,7 +34,7 @@ function websdkready() {
     // it's option if you want to change the WebSDK dependency link resources. setZoomJSLib must be run at first
     // ZoomMtg.setZoomJSLib("https://source.zoom.us/2.0.1/lib", "/av"); // CDN version defaul
     if (meetingConfig.china)
-        ZoomMtg.setZoomJSLib("https://jssdk.zoomus.cn/2.9.5/lib", "/av"); // china cdn option
+        ZoomMtg.setZoomJSLib("https://jssdk.zoomus.cn/2.0.1/lib", "/av"); // china cdn option
     ZoomMtg.preLoadWasm();
     ZoomMtg.prepareJssdk();
 

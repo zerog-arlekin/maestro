@@ -14,13 +14,33 @@ function websdkready() {
     // ZoomMtg.setZoomJSLib('http://localhost:9999/node_modules/@zoomus/websdk/dist/lib', '/av'); // Local version default, Angular Project change to use cdn version
     ZoomMtg.preLoadWasm(); // pre download wasm file to save time.
 
-    var API_KEY = "o42FCt9Ql7MHbLsAMy4iI38QLZK8jcPMY6yv";
+    var API_KEY = "cO0ZMLWLssQtk0kCs9oElZ1mI0NnCSbL6zSc";
     /**
      * NEVER PUT YOUR ACTUAL API SECRET IN CLIENT SIDE CODE, THIS IS JUST FOR QUICK PROTOTYPING
      * The below generateSignature should be done server side as not to expose your api secret in public
      * You can find an eaxmple in here: https://marketplace.zoom.us/docs/sdk/native-sdks/web/essential/signature
      */
-    var API_SECRET = "miprDFFKun5kH1zmeHvjGIrh7KTjjFkaDsUe";
+    // var API_SECRET = "oqLscnZYdpcZutUQgTFOykMIS9GcHeOE2dRa";
+    var signatureEndpoint = "http://localhost:4000/";
+
+    // function getSignature(e) {
+    //     e.preventDefault();
+    
+    //     fetch(signatureEndpoint, {
+    //       method: 'POST',
+    //       headers: { 'Content-Type': 'application/json' },
+    //       body: JSON.stringify({
+    //         meetingNumber: meetingNumber,
+    //         role: role
+    //       })
+    //     }).then(res => res.json())
+    //     .then(response => {
+    //       console.log(response);
+    //       startMeeting(response.signature)
+    //     }).catch(error => {
+    //       console.error(error)
+    //     })
+    //   }
 
     // click join meeting button
     document
@@ -32,21 +52,41 @@ function websdkready() {
                 alert("Meeting username is empty");
                 return false;
             }
-
-            var signature = ZoomMtg.generateSignature({
-                meetingNumber: meetingConfig.mn,
-                apiKey: API_KEY,
-                apiSecret: API_SECRET,
-                role: meetingConfig.role,
-                success: function (res) {
-                    console.log(res.result);
-                    meetingConfig.signature = res.result;
+            
+            var signature = fetch(signatureEndpoint, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                  meetingNumber: meetingConfig.mn,
+                  role: meetingConfig.role
+                })
+              }).then(res => res.json())
+              .then(response => {
+                    console.log(response);
+                    // startMeeting(response.signature)
+                    meetingConfig.signature = response.signature;
                     meetingConfig.apiKey = API_KEY;
                     var joinUrl = "/maestro/meeting.html?" + testTool.serialize(meetingConfig);
-                    // var joinUrl = "/meeting.html?" + testTool.serialize(meetingConfig);
-                    console.log(joinUrl);
                     window.open(joinUrl, "_self");
-                },
-            });
+                }).catch(error => {
+                console.error(error)
+              })
+
+
+            // var signature = ZoomMtg.generateSignature({
+            //     meetingNumber: meetingConfig.mn,
+            //     apiKey: API_KEY,
+            //     apiSecret: API_SECRET,
+            //     role: meetingConfig.role,
+            //     success: function (res) {
+            //         console.log(res.result);
+            //         meetingConfig.signature = res.result;
+            //         meetingConfig.apiKey = API_KEY;
+            //         var joinUrl = "https://zerog-arlekin.github.io/maestro/meeting.html?" + testTool.serialize(meetingConfig);
+            //         // var joinUrl = "/meeting.html?" + testTool.serialize(meetingConfig);
+            //         console.log(joinUrl);
+            //         window.open(joinUrl, "_self");
+            //     },
+            // });
         });
 }
