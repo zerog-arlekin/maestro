@@ -20,7 +20,7 @@ function websdkready() {
             }
         })(),
         passWord: tmpArgs.pwd,
-        leaveUrl: "/index.html",
+        leaveUrl: "/maestro/index.html",
         role: parseInt(tmpArgs.role, 10),
         userEmail: tmpArgs.email,
         lang: tmpArgs.lang,
