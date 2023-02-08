@@ -44,7 +44,7 @@ function websdkready() {
               .then(response => {
                     meetingConfig.signature = response.signature;
                     meetingConfig.apiKey = API_KEY;
-                    var joinUrl = "maestro/meeting.html?" + testTool.serialize(meetingConfig);
+                    var joinUrl = "/meeting.html?" + testTool.serialize(meetingConfig);
                     window.open(joinUrl, "_self");
                 }).catch(error => {
                 console.error(error)
