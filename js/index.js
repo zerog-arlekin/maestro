@@ -20,7 +20,7 @@ function websdkready() {
      * The below generateSignature should be done server side as not to expose your api secret in public
      * You can find an eaxmple in here: https://marketplace.zoom.us/docs/sdk/native-sdks/web/essential/signature
      */
-    var signatureEndpoint = "http://localhost:4000/";
+    var signatureEndpoint = "https://stormy-tundra-15211.herokuapp.com/";
 
     // click join meeting button
     document
