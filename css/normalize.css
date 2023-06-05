@@ -347,3 +347,7 @@ template {
 [hidden] {
   display: none;
 }
+
+.wrapper {
+    background-color: red
+}
