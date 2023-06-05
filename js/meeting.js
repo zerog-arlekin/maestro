@@ -38,7 +38,6 @@ function websdkready() {
     ZoomMtg.prepareJssdk();
 
     function beginJoin(signature) {
-        console.log('begin join: ', signature);
         // ZoomMtg.init({
         //     leaveUrl: meetingConfig.leaveUrl,
         //     webEndpoint: meetingConfig.webEndpoint,
@@ -105,7 +104,7 @@ function websdkready() {
       
             },
             error: (error) => {
-              console.log(error)
+              console.log('error: ', error)
             }
           })
 
